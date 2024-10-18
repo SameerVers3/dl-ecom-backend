@@ -48,26 +48,26 @@ export const signupController = async (request, response) => {
 
         const userResponse = await User.create(obj);
 
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: process.env.EMAIL,
-                pass: process.env.PASS
-            }
-        });
-        const otp = Math.floor(100000 + Math.random() * 900000);
+        // const transporter = nodemailer.createTransport({
+        //     service: 'gmail',
+        //     auth: {
+        //         user: process.env.EMAIL,
+        //         pass: process.env.PASS
+        //     }
+        // });
+        // const otp = Math.floor(100000 + Math.random() * 900000);
 
-        await transporter.sendMail({
-            from: process.env.EMAIL,
-            to: email,
-            subject: "Email Verification",
-            html: EmailVerificationHtml(otp),
-        });
+        // await transporter.sendMail({
+        //     from: process.env.EMAIL,
+        //     to: email,
+        //     subject: "Email Verification",
+        //     html: EmailVerificationHtml(otp),
+        // });
 
-        await OtpModel.create({
-            otp,
-            email
-        });
+        // await OtpModel.create({
+        //     otp,
+        //     email
+        // });
 
         response.status(201).json({
             data: userResponse,
